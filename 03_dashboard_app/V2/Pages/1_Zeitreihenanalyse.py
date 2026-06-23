@@ -14,6 +14,8 @@ import altair as alt
 import re
 
 from function import *
+BASE_DIR = Path(__file__).resolve().parents[3]
+
 
 
 st.set_page_config(
@@ -33,7 +35,8 @@ st.set_page_config(
 ##Data loading
 @st.cache_data
 def load_data():
-    return  pd.read_csv(r"..\dsi-abschlussprojekt\01_public_health_analysis\data\processed\germany_hypertension_public_health_2000_2019.csv", 
+    data_path = BASE_DIR / "01_public_health_analysis" / "data" / "processed" / "germany_hypertension_public_health_2000_2019.csv"
+    return  pd.read_csv(data_path, 
     parse_dates=["Year"],
     date_format="%Y"
     )
@@ -42,7 +45,8 @@ df_hyper_year = data_year.copy()
 
 @st.cache_data
 def load_data2():
-    return  pd.read_csv(r"..\dsi-abschlussprojekt\01_public_health_analysis\data\raw\hypertension-adults-30-79.csv", 
+    data_path = BASE_DIR / "01_public_health_analysis" / "data" / "raw" / "hypertension-adults-30-79.csv"
+    return  pd.read_csv(data_path, 
     parse_dates=["Year"],
     date_format="%Y"
     )
@@ -51,7 +55,8 @@ df_country = data_country.copy()
 
 @st.cache_data
 def load_data3():
-    return  pd.read_csv(r"..\dsi-abschlussprojekt\01_public_health_analysis\data\raw\death-rate-from-hypertensive-heart-disease-who-ghe-age-standardized.csv", 
+    data_path = BASE_DIR / "01_public_health_analysis" / "data" / "raw" / "death-rate-from-hypertensive-heart-disease-who-ghe-age-standardized.csv"
+    return  pd.read_csv(data_path, 
     parse_dates=["Year"],
     date_format="%Y"
     )
@@ -66,10 +71,21 @@ df_stirb = data_stirb.copy()
 ################################################################################
 st.title("Entwicklung der Hypertonie-Prävalenz")
 st.subheader(":hearts:")
-st.write("Hier bietet sich an zu schreiben, was diese Seite alles zeigen soll oder an Informationen und die Begrifffe wie periodische Prävalenz")
+st.write(
+    "Diese Seite zeigt die zeitliche Entwicklung der Hypertonie-Prävalenz in Deutschland "
+    "für Erwachsene im Alter von 30 bis 79 Jahren im Zeitraum 2000 bis 2019. "
+    "Ergänzend werden geschlechtsspezifische Unterschiede, die Sterberate durch "
+    "hypertensive Herzerkrankungen sowie die gemeinsame Betrachtung von Prävalenz und "
+    "Mortalität dargestellt."
+)
 ################################################################################
 st.header(":alarm_clock: Hypertonie in Deutschland")
-st.write("Prävalenz, Sterberate und geschlechtspezifische Unterschiede 2000 - 2019")
+st.write(
+    "Die zugrunde liegenden WHO-Daten wurden für Deutschland aufbereitet und auf den "
+    "gemeinsamen Beobachtungszeitraum 2000 bis 2019 eingeschränkt. Die Visualisierungen "
+    "helfen dabei, langfristige Trends und Unterschiede zwischen Männern und Frauen "
+    "kompakt nachzuvollziehen."
+)
 
 
 
@@ -168,7 +184,7 @@ new_columns = [custom_labels.get(col, col) for col in columns]
 ##############################
 with zeit_container:
     with tab3:
-        st.subheader("Entwicklung der Hypertonie-Prävalenz von Deutschen (30 - 79 Jahren)")
+        st.subheader("Entwicklung der Hypertonie-Prävalenz in Deutschland, 2000-2019")
         #Geschlechtfilterung erstellt pills
 
         selected_gender = st.pills("Auswahl Geschlecht", new_columns, selection_mode ="multi",default = "Gesamt", key ="gender_pill")
@@ -204,19 +220,36 @@ with zeit_container:
             st.warning("Bitte wähle ein Geschlecht aus, um fortzufahren.")
 
 
-        st.write("Hier kann ein Text kommen. tab3")
+        st.write(
+            "Die Gesamtprävalenz der Hypertonie ging im Beobachtungszeitraum deutlich "
+            "zurück. Im Datensatz sinkt der Wert von 40,2 % im Jahr 2000 auf 29,7 % im "
+            "Jahr 2019. Auch in den geschlechtsspezifischen Reihen zeigt sich damit ein "
+            "klarer langfristiger Abwärtstrend."
+        )
 
 with tab4:
     st.subheader("Geschlechterunterschied bei der Hypertonie-Prävalenz in Deutschland")
     chart_gap = create_chart(df_hyper_year, ["gender_gap_men_minus_women"], x_axis = "Year", y_axis = "Geschlechterdifferenz in Prozentpunkte", serie ="Serie")
     chart_gap = chart_gap.mark_circle(size=80) + chart_gap
     st.altair_chart(chart_gap, theme = chart_theme, use_container_width=True)
+    st.write(
+        "Männer weisen über den gesamten Zeitraum hinweg eine höhere Hypertonie-Prävalenz "
+        "auf als Frauen. Zu Beginn lag der Abstand bei rund 10 bis 11 Prozentpunkten. "
+        "Ab etwa 2011 wird die Lücke etwas kleiner und erreicht 2019 noch etwa "
+        "9,4 Prozentpunkte."
+    )
 
 with tab_stirb:
-    st.subheader("Sterberate bei Deutschen durch eine hypertensive Krankheit")
+    st.subheader("Sterberate aufgrund einer hypertensiven Herzerkrankung in Deutschland, 2000-2019")
     chart_stirb = create_chart(df_hyper_year, ["hypertensive_heart_disease_death_rate"], x_axis = "Year", y_axis = "Sterberate pro 100.000 Einwohner", serie ="Hallo")
     chart_stirb = chart_stirb.mark_circle(size=80) + chart_stirb
     st.altair_chart(chart_stirb, theme = chart_theme, use_container_width=True)
+    st.write(
+        "Im Gegensatz zur sinkenden Prävalenz steigt die Sterberate durch hypertensive "
+        "Herzerkrankungen im Zeitverlauf zunächst an. Sie erhöht sich von 7,58 Todesfällen "
+        "pro 100.000 Einwohner im Jahr 2000 auf einen Höchststand um 2015 und liegt 2019 "
+        "mit 11,22 weiterhin über dem Ausgangsniveau."
+    )
 
 with tab_relation:
     st.subheader("Beziehung zwischen Prävalenz und Sterberate")
@@ -224,7 +257,13 @@ with tab_relation:
     chart_relation = chart_relation.mark_circle(size=80) 
     st.altair_chart(chart_relation, theme = chart_theme, use_container_width=True)
 
-    st.write("keinen Trend --> Variablen sind unabhängig")
+    st.write(
+        "Die Punktdarstellung zeigt eine gegenläufige Entwicklung von Prävalenz und "
+        "Sterberate im Beobachtungszeitraum. Dieser Zusammenhang sollte jedoch nicht "
+        "kausal interpretiert werden, da beide Kennzahlen stark vom Zeitverlauf geprägt "
+        "sind und weitere medizinische oder demografische Faktoren hier nicht berücksichtigt "
+        "werden."
+    )
 
 
 
@@ -238,10 +277,19 @@ if st.toggle("Dataframe anzeigen"):
 
 
 
-st.header("Zusammenfassung für DE")
-st.write("Die Hypertonie-Prävalenz ist zwischen ... ")
-
-st.write("Dummy Text")
+st.header("Zusammenfassung für Deutschland")
+st.write(
+    "Die Analyse für Deutschland zeigt zwischen 2000 und 2019 einen stetigen Rückgang "
+    "der Hypertonie-Prävalenz. Dieser Rückgang ist sowohl in der Gesamtbevölkerung als "
+    "auch getrennt nach Geschlecht sichtbar."
+)
+st.write(
+    "Männer sind im gesamten Zeitraum stärker betroffen als Frauen, auch wenn sich der "
+    "Abstand im Zeitverlauf leicht verringert. Gleichzeitig steigt die Sterberate durch "
+    "hypertensive Herzerkrankungen über viele Jahre an. Insgesamt macht die Auswertung "
+    "deutlich, dass eine sinkende Prävalenz nicht automatisch mit einer sinkenden "
+    "krankheitsspezifischen Mortalität einhergeht."
+)
 
 
 
