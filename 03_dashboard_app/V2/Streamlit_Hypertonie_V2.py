@@ -1,10 +1,3 @@
-#ist dafür da, damit ich die App schnell auf Windows oder Mac öffne
-#cd C:\Users\haanh\.vscode\DSI_Abschlussprojekt\dsi-abschlussprojekt
-#streamlit run .\03_dashboard_app\V2\Streamlit_Hypertonie_V2.py
-#streamlit run "/Users/haanhtran/Documents/Python/dsi-abschlussprojekt/03_dashboard_app/V2/Streamlit_Hypertonie_V2.py"
-
-
-
 #docs.streamlit.io
 #https://docs.streamlit.io/develop/quick-reference/cheat-sheet
 #framework
