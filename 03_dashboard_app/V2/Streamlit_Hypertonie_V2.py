@@ -42,9 +42,12 @@ seite = st.sidebar.radio(
         "ℹ️ Impressum"
     ]
 )
+with st.sidebar:
+    st.Page("Streamlit_Hypertonie_V2.py", title="First page", icon="🔥")
+
+
 if seite == "🏠 Startseite":
-    st.title("🩺 Hypertonie Dashboard")
-    st.write("Willkommen im Dashboard zur Analyse von Hypertonie.")
+    st.write("ss")
 
 elif seite == "📈 Zeitreihenanalyse":
     exec(
@@ -77,6 +80,11 @@ elif seite == "ℹ️ Impressum":
             "4_Impressum.py"
         ).read_text(encoding="utf-8")
     )
+
+
+
+
+
 
 #Überschrift
 st.title("Risiko auf Hypertonie")

@@ -30,9 +30,9 @@ st.set_page_config(
 
 ###################################################
 
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-st.write("BASE_DIR:", BASE_DIR)
-st.write("Files:", list((BASE_DIR / "V2" / "Files").glob("*")))
+data_path = BASE_DIR / "V2" / "Files" / "nhanes_cleand.csv"
 
 @st.cache_data
 def load_data():
