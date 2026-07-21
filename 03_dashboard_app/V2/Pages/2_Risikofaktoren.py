@@ -15,9 +15,6 @@ import altair as alt
 from function import *
 
 
-BASE_DIR = Path(__file__).resolve().parents[3]
-
-
 st.set_page_config(
     page_title="Risikofaktor",
     page_icon = ":hearts:",
@@ -33,7 +30,9 @@ st.set_page_config(
 
 ###################################################
 
-data_path = BASE_DIR / "Files"/ "nhanes_cleand.csv"
+BASE_DIR = Path(__file__).resolve().parents[1]
+
+data_path = BASE_DIR / "Files" / "nhanes_cleand.csv"
 
 @st.cache_data
 def load_data():
