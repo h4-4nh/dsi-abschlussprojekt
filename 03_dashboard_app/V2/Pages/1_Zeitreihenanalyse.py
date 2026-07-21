@@ -35,7 +35,7 @@ st.set_page_config(
 ##Data loading
 @st.cache_data
 def load_data():
-    data_path = BASE_DIR / "01_public_health_analysis" / "data" / "processed" / "germany_hypertension_public_health_2000_2019.csv"
+    data_path = BASE_DIR / "Files"/ "germany_hypertension_public_health_2000_2019.csv"
     return  pd.read_csv(data_path, 
     parse_dates=["Year"],
     date_format="%Y"
@@ -45,7 +45,7 @@ df_hyper_year = data_year.copy()
 
 @st.cache_data
 def load_data2():
-    data_path = BASE_DIR / "01_public_health_analysis" / "data" / "raw" / "hypertension-adults-30-79.csv"
+    data_path = BASE_DIR / "Files"/ "hypertension-adults-30-79.csv"
     return  pd.read_csv(data_path, 
     parse_dates=["Year"],
     date_format="%Y"
@@ -55,7 +55,7 @@ df_country = data_country.copy()
 
 @st.cache_data
 def load_data3():
-    data_path = BASE_DIR / "01_public_health_analysis" / "data" / "raw" / "death-rate-from-hypertensive-heart-disease-who-ghe-age-standardized.csv"
+    data_path = BASE_DIR / "Files"/ "death-rate-from-hypertensive-heart-disease-who-ghe-age-standardized.csv"
     return  pd.read_csv(data_path, 
     parse_dates=["Year"],
     date_format="%Y"

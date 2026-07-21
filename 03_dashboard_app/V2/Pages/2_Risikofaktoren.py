@@ -33,7 +33,7 @@ st.set_page_config(
 
 ###################################################
 
-data_path = BASE_DIR / "02_ml_analysis" / "notebooks" / "nhanes_cleand.csv"
+data_path = BASE_DIR / "Files"/ "nhanes_cleand.csv"
 
 @st.cache_data
 def load_data():
