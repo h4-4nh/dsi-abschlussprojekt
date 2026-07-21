@@ -603,9 +603,9 @@ chart_disease_bar = chart_disease_bar.properties(
 
 with disease_col:
     if type_chart == "Donut":
-        st.altair_chart(chart_disease_donut, theme=chart_theme, use_container_width=True)
+        st.altair_chart(chart_disease_donut, theme=chart_theme)
     else:
-        st.altair_chart(chart_disease_bar, theme=chart_theme, use_container_width=True)
+        st.altair_chart(chart_disease_bar, theme=chart_theme)
 
 if st.toggle("Dataframe(Vorerkrankung) anzeigen"):
     st.dataframe(condition_summary)
