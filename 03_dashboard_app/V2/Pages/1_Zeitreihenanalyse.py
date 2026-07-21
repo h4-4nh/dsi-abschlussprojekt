@@ -45,8 +45,6 @@ def load_data():
     parse_dates=["Year"],
     date_format="%Y")
 
-
-
 data_year = load_data()
 df_hyper_year = data_year.copy()
 
