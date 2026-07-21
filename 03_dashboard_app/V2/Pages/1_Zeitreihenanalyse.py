@@ -16,7 +16,8 @@ import re
 from function import *
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+st.write("BASE_DIR:", BASE_DIR)
+st.write("Files:", list((BASE_DIR / "Files").glob("*")))
 
 st.set_page_config(
     page_title="Zeitreihenanalyse",

@@ -34,6 +34,10 @@ BASE_DIR = Path(__file__).resolve().parents[1]
 
 data_path = BASE_DIR / "Files" / "nhanes_cleand.csv"
 
+
+st.write("BASE_DIR:", BASE_DIR)
+st.write("Files:", list((BASE_DIR / "Files").glob("*")))
+
 @st.cache_data
 def load_data():
     if not data_path.exists():
