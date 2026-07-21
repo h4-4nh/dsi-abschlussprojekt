@@ -27,9 +27,56 @@ st.set_page_config(
                  "Autor: Ludmila Janzen, Mahshid Ghasempour, Ha Anh Tran"
     }
 )
-
+st.set_option("client.showSidebarNavigation", False)
 st.sidebar.title("Navigation")
 
+st.sidebar.title("🩺 Navigation")
+
+seite = st.sidebar.radio(
+    "Seite auswählen:",
+    [
+        "🏠 Startseite",
+        "📈 Zeitreihenanalyse",
+        "⚠️ Risikofaktoren",
+        "🔍 Risiko auf Hypertonie",
+        "ℹ️ Impressum"
+    ]
+)
+if seite == "🏠 Startseite":
+    st.title("🩺 Hypertonie Dashboard")
+    st.write("Willkommen im Dashboard zur Analyse von Hypertonie.")
+
+elif seite == "📈 Zeitreihenanalyse":
+    exec(
+        Path(__file__).parent.joinpath(
+            "Pages",
+            "1_Zeitreihenanalyse.py"
+        ).read_text(encoding="utf-8")
+    )
+
+elif seite == "⚠️ Risikofaktoren":
+    exec(
+        Path(__file__).parent.joinpath(
+            "Pages",
+            "2_Risikofaktoren.py"
+        ).read_text(encoding="utf-8")
+    )
+
+elif seite == "🔍 Risiko auf Hypertonie":
+    exec(
+        Path(__file__).parent.joinpath(
+            "Pages",
+            "3_Risiko_auf_Hypertonie.py"
+        ).read_text(encoding="utf-8")
+    )
+
+elif seite == "ℹ️ Impressum":
+    exec(
+        Path(__file__).parent.joinpath(
+            "Pages",
+            "4_Impressum.py"
+        ).read_text(encoding="utf-8")
+    )
 
 #Überschrift
 st.title("Risiko auf Hypertonie")
