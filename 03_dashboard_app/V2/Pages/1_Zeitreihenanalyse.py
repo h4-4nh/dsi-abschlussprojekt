@@ -41,7 +41,10 @@ def load_data():
         st.error(f"Datei nicht gefunden: {data_path}")
         st.stop()
 
-    return pd.read_csv(data_path)
+    return pd.read_csv(data_path, 
+    parse_dates=["Year"],
+    date_format="%Y")
+
 
 
 data_year = load_data()
