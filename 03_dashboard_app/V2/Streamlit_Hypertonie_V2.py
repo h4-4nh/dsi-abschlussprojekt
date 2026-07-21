@@ -42,12 +42,12 @@ seite = st.sidebar.radio(
         "ℹ️ Impressum"
     ]
 )
-with st.sidebar:
-    st.Page("Streamlit_Hypertonie_V2.py", title="First page", icon="🔥")
+
 
 
 if seite == "🏠 Startseite":
-    st.write("ss")
+    st.sidebar.Page("Streamlit_Hypertonie_V2.py", title="First page", icon="🔥")
+    st.sidebar.write("ss")
 
 elif seite == "📈 Zeitreihenanalyse":
     exec(
