@@ -75,7 +75,7 @@ elif seite == "ℹ️ Impressum":
     )
 
 
-
+st.Page(BASE_DIR /"Pages"/ "1_Zeitreihenanalyse.py", title="Second page", icon="🔥")
 
 
 
