@@ -14,7 +14,7 @@ import altair as alt
 import re
 
 from function import *
-BASE_DIR = Path(__file__).resolve().parents[0]
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 
