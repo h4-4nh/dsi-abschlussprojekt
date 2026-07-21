@@ -27,6 +27,7 @@ st.set_page_config(
                  "Autor: Ludmila Janzen, Mahshid Ghasempour, Ha Anh Tran"
     }
 )
+
 # Pfad zum Pages-Ordner
 pages_dir = Path(__file__).parent / "Pages"
 
@@ -35,7 +36,7 @@ pages_dir = Path(__file__).parent / "Pages"
 pg = st.navigation(
     [
         st.Page(
-            "Streamlit_Hypertonie_V2.py",
+            BASE_DIR/"Streamlit_Hypertonie_V2.py",
             title="Startseite",
             icon="🏠"
         ),
