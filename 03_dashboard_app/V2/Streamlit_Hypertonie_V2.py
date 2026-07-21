@@ -27,55 +27,43 @@ st.set_page_config(
                  "Autor: Ludmila Janzen, Mahshid Ghasempour, Ha Anh Tran"
     }
 )
-st.set_option("client.showSidebarNavigation", False)
+# Pfad zum Pages-Ordner
+pages_dir = Path(__file__).parent / "Pages"
 
-st.sidebar.title("🩺 Navigation")
 
-seite = st.sidebar.radio(
-    "Seite auswählen:",
+# Navigation definieren
+pg = st.navigation(
     [
-        "🏠 Startseite",
-        "📈 Zeitreihenanalyse",
-        "⚠️ Risikofaktoren",
-        "🔍 Risiko auf Hypertonie",
-        "ℹ️ Impressum"
+        st.Page(
+            "Streamlit_Hypertonie_V2.py",
+            title="Startseite",
+            icon="🏠"
+        ),
+        st.Page(
+            pages_dir / "1_Zeitreihenanalyse.py",
+            title="Zeitreihenanalyse",
+            icon="📈"
+        ),
+        st.Page(
+            pages_dir / "2_Risikofaktoren.py",
+            title="Risikofaktoren",
+            icon="⚠️"
+        ),
+        st.Page(
+            pages_dir / "3_Risiko_auf_Hypertonie.py",
+            title="Risiko auf Hypertonie",
+            icon="🔍"
+        ),
+        st.Page(
+            pages_dir / "4_Impressum.py",
+            title="Impressum",
+            icon="ℹ️"
+        )
     ]
 )
 
-if seite == "🏠 Startseite":
-    st.Page("Streamlit_Hypertonie_V2.py", title="First page", icon="🔥")
 
-
-elif seite == "📈 Zeitreihenanalyse":
-    st.Page(BASE_DIR /"Pages"/ "1_Zeitreihenanalyse.py", title="Second page", icon="🔥")
-
-
-elif seite == "⚠️ Risikofaktoren":
-    exec(
-        Path(__file__).parent.joinpath(
-            "Pages",
-            "2_Risikofaktoren.py"
-        ).read_text(encoding="utf-8")
-    )
-
-elif seite == "🔍 Risiko auf Hypertonie":
-    exec(
-        Path(__file__).parent.joinpath(
-            "Pages",
-            "3_Risiko_auf_Hypertonie.py"
-        ).read_text(encoding="utf-8")
-    )
-
-elif seite == "ℹ️ Impressum":
-    exec(
-        Path(__file__).parent.joinpath(
-            "Pages",
-            "4_Impressum.py"
-        ).read_text(encoding="utf-8")
-    )
-
-
-st.Page(BASE_DIR /"Pages"/ "1_Zeitreihenanalyse.py", title="Second page", icon="🔥")
+pg.run()
 
 
 
