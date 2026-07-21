@@ -20,6 +20,7 @@ st.set_page_config(
     page_title="Startseite",
     page_icon=":hearts:",
     layout="wide",
+    initial_sidebar_state="auto",
     menu_items={
         'Report a bug': "mailto:haanhhanoitran@gmail.com",
         'About': "Eine App hergestellt für die Visualisierung von Hypertonie Daten \n"
