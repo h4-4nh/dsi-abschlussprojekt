@@ -33,12 +33,15 @@ st.set_page_config(
 
 ###################################################
 
-##Data loading
+data_path = BASE_DIR / "02_ml_analysis" / "notebooks" / "nhanes_cleand.csv"
+
 @st.cache_data
 def load_data():
-    data_path = BASE_DIR / "02_ml_analysis" / "notebooks" / "nhanes_cleand.csv"
-    return  pd.read_csv(data_path
-    )
+    if not data_path.exists():
+        st.error(f"Datei nicht gefunden: {data_path}")
+        st.stop()
+
+    return pd.read_csv(data_path)
 
 data_nhanes = load_data()
 df_nh = data_nhanes.copy()
