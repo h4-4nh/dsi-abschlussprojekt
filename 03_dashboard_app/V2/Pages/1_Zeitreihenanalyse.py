@@ -36,7 +36,7 @@ st.set_page_config(
 ##Data loading
 @st.cache_data
 def load_data():
-    data_path = BASE_DIR / "V2" /  "Files" /"germany_hypertension_public_health_2000_2019.csv"
+    data_path = BASE_DIR / "V2" /  "Files" /"germany_hypertension_prevalence_and_mortality_2000_2019.csv"
     return  pd.read_csv(data_path, 
     parse_dates=["Year"],
     date_format="%Y"
