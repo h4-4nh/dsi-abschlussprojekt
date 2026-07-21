@@ -27,8 +27,7 @@ st.set_page_config(
                  "Autor: Ludmila Janzen, Mahshid Ghasempour, Ha Anh Tran"
     }
 )
-#st.set_option("client.showSidebarNavigation", False)
-st.sidebar.title("Navigation")
+st.set_option("client.showSidebarNavigation", False)
 
 st.sidebar.title("🩺 Navigation")
 
@@ -43,19 +42,13 @@ seite = st.sidebar.radio(
     ]
 )
 
-
-
 if seite == "🏠 Startseite":
     st.Page("Streamlit_Hypertonie_V2.py", title="First page", icon="🔥")
-    st.sidebar.write("ss")
+
 
 elif seite == "📈 Zeitreihenanalyse":
-    exec(
-        Path(__file__).parent.joinpath(
-            "Pages",
-            "1_Zeitreihenanalyse.py"
-        ).read_text(encoding="utf-8")
-    )
+    st.Page(BASE_DIR /"Pages"/ "1_Zeitreihenanalyse.py", title="Second page", icon="🔥")
+
 
 elif seite == "⚠️ Risikofaktoren":
     exec(
