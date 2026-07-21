@@ -27,7 +27,7 @@ st.set_page_config(
                  "Autor: Ludmila Janzen, Mahshid Ghasempour, Ha Anh Tran"
     }
 )
-st.set_option("client.showSidebarNavigation", False)
+#st.set_option("client.showSidebarNavigation", False)
 st.sidebar.title("Navigation")
 
 st.sidebar.title("🩺 Navigation")
