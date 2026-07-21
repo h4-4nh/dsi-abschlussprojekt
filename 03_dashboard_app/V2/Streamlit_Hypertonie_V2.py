@@ -20,13 +20,15 @@ st.set_page_config(
     page_title="Startseite",
     page_icon=":hearts:",
     layout="wide",
-    initial_sidebar_state="auto",
+    initial_sidebar_state="expanded",
     menu_items={
         'Report a bug': "mailto:haanhhanoitran@gmail.com",
         'About': "Eine App hergestellt für die Visualisierung von Hypertonie Daten \n"
                  "Autor: Ludmila Janzen, Mahshid Ghasempour, Ha Anh Tran"
     }
 )
+
+st.sidebar.title("Navigation")
 
 
 #Überschrift
