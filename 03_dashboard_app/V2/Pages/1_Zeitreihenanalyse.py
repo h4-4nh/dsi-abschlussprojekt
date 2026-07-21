@@ -33,7 +33,7 @@ st.set_page_config(
 ################################################################################
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-data_path = BASE_DIR / "V2" / "Files" / "germany_hypertension_prevalence_and_mortality_2000_2019.csv"
+data_path = BASE_DIR / "V2" / "Files" / "germany_hypertension_public_health_2000_2019.csv"
 ##Data loading
 @st.cache_data
 def load_data():
