@@ -31,16 +31,19 @@ st.set_page_config(
 )
 
 ################################################################################
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-
+data_path = BASE_DIR / "V2" / "Files" / "germany_hypertension_prevalence_and_mortality_2000_2019.csv"
 ##Data loading
 @st.cache_data
 def load_data():
-    data_path = BASE_DIR / "V2" /  "Files" /"germany_hypertension_prevalence_and_mortality_2000_2019.csv"
-    return  pd.read_csv(data_path, 
-    parse_dates=["Year"],
-    date_format="%Y"
-    )
+    if not data_path.exists():
+        st.error(f"Datei nicht gefunden: {data_path}")
+        st.stop()
+
+    return pd.read_csv(data_path)
+
+
 data_year = load_data()
 df_hyper_year = data_year.copy()
 
