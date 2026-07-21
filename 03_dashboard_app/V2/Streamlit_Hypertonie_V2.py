@@ -46,7 +46,7 @@ seite = st.sidebar.radio(
 
 
 if seite == "🏠 Startseite":
-    st.sidebar.Page("Streamlit_Hypertonie_V2.py", title="First page", icon="🔥")
+    st.Page("Streamlit_Hypertonie_V2.py", title="First page", icon="🔥")
     st.sidebar.write("ss")
 
 elif seite == "📈 Zeitreihenanalyse":
