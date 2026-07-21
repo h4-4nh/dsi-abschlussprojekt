@@ -36,7 +36,7 @@ data_path = BASE_DIR / "V2" / "Files" / "nhanes_cleand.csv"
 
 
 st.write("BASE_DIR:", BASE_DIR)
-st.write("Files:", list((BASE_DIR / "Files").glob("*")))
+st.write("Files:", list((BASE_DIR / "V2" / "Files").glob("*")))
 
 @st.cache_data
 def load_data():
