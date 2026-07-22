@@ -43,7 +43,7 @@ st.set_page_config(
 
 #################################
 #Daten werden geladen
-#@st.cache_data
+#@st.cache_dataxx
 #def load_data():
 #    data_path = BASE_DIR / "02_ml_analysis" / "notebooks" / "nhanes_cleand.csv"
 #    return  pd.read_csv(data_path
@@ -202,13 +202,16 @@ def spass():
     elif st.session_state.pumpen <= 100 :
         st.session_state.alkohol = "Hoher Konsum"
 
-
 def update_slider():
     mapping = {
         "nicht aktiv": 5,
         "moderat aktiv": 40,
         "intensiv aktiv": 70,
     }
+
+    st.session_state.activity_slider = mapping[
+        st.session_state.active
+    ]
 
 def update_selectbox():
     value = st.session_state.activity_slider
@@ -318,7 +321,7 @@ with spalte_6:
         key = "alkohol",
         on_change = Alkoholpegel
     )
-    pumpen = st.slider("Alkoholkonsum", min_value = 0, max_value = 100, value = 100,
+    pumpen = st.slider("Alkoholkonsum", min_value = 0, max_value = 100, value = 0,
                        on_change= spass,
                         key = "pumpen"
                         )
