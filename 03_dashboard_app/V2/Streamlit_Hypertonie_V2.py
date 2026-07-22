@@ -31,6 +31,7 @@ st.set_page_config(
 # Pfad zum Pages-Ordner
 pages_dir = Path(__file__).parent / "Pages"
 
+st.write(pages_dir , "Startseite.py")
 
 # Navigation definieren
 pg = st.navigation(
@@ -39,6 +40,11 @@ pg = st.navigation(
             BASE_DIR/"Streamlit_Hypertonie_V2.py",
             title="Startseite",
             icon="🏠"
+        ),
+        st.Page(
+            pages_dir / "Startseite.py",
+            title="Zeitreihenanalyse",
+            icon="📈"
         ),
         st.Page(
             pages_dir / "1_Zeitreihenanalyse.py",
