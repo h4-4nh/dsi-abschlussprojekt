@@ -42,8 +42,8 @@ pg = st.navigation(
             icon="🏠"
         ),
         st.Page(
-            pages_dir / "Startseite.py",
-            title="Zeitreihenanalyse",
+            pages_dir / "0_Startseite.py",
+            title="Startseite",
             icon="📈"
         ),
         st.Page(
