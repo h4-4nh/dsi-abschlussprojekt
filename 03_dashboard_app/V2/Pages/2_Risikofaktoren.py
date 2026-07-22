@@ -15,9 +15,6 @@ import altair as alt
 from function import *
 
 
-BASE_DIR = Path(__file__).resolve().parents[3]
-
-
 st.set_page_config(
     page_title="Risikofaktor",
     page_icon = ":hearts:",
@@ -33,12 +30,17 @@ st.set_page_config(
 
 ###################################################
 
-##Data loading
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+data_path = BASE_DIR / "Files" / "nhanes_cleand.csv"
+
 @st.cache_data
 def load_data():
-    data_path = BASE_DIR / "02_ml_analysis" / "notebooks" / "nhanes_cleand.csv"
-    return  pd.read_csv(data_path
-    )
+    if not data_path.exists():
+        st.error(f"Datei nicht gefunden: {data_path}")
+        st.stop()
+
+    return pd.read_csv(data_path)
 
 data_nhanes = load_data()
 df_nh = data_nhanes.copy()
@@ -597,9 +599,9 @@ chart_disease_bar = chart_disease_bar.properties(
 
 with disease_col:
     if type_chart == "Donut":
-        st.altair_chart(chart_disease_donut, theme=chart_theme, use_container_width=True)
+        st.altair_chart(chart_disease_donut, theme=chart_theme)
     else:
-        st.altair_chart(chart_disease_bar, theme=chart_theme, use_container_width=True)
+        st.altair_chart(chart_disease_bar, theme=chart_theme)
 
 if st.toggle("Dataframe(Vorerkrankung) anzeigen"):
     st.dataframe(condition_summary)
