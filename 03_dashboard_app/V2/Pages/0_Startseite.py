@@ -11,8 +11,7 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 from streamlit_javascript import st_javascript
 
-BASE_DIR = Path(__file__).resolve().parent
-
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 #Name der App, Stil, Menu Leiste
